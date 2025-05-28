@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen space-y-8 py-12">
+
+    <div class="text-center max-w-2xl">
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
+            Simulator of coding with Gold's code
+        </h1>
+        <p class="mb-6 text-lg font-normal text-gray-400 lg:text-xl">
+            Here, you can learn more about how Gold's code works. Just fill in required fields and optional ones, if
+            you already got an idea, and let the magic do it's job
+        </p>
+    </div>
+
+    <form method="POST" action="/submit" class="bg-gray-800 p-8 rounded space-y-4 w-full max-w-md">
+        <label for="source" class="block text-sm font-medium text-gray-300">Fill in required fields below...</label>
+        <input type="text" name="sent_to+code" placeholder="Enter sentence to be coded"
+               required class="w-full p-2 rounded bg-gray-700">
+
+        <select name="source" id="source" required
+            class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                <option value="" disabled selected>Choose error rate density</option>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high">high</option>
+        </select>
+
+        <label for="source" class="block text-sm font-medium text-gray-300">and optionals here!</label>
+        <input type="text" name="binary" placeholder="Enter polynom of the first LFSR"
+            pattern="[01]*"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+        >
+
+        <input type="number" name="binary" placeholder="Enter n"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+               min="5" max="15"
+        >
+
+        <input type="text" name="binary"
+            placeholder="Enter initial seed of the second LFSR"
+            pattern="[01]*"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+        >
+
+        <input type="text" name="binary"
+            placeholder="Enter initial seed of the second LFSR"
+            pattern="[01]*"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+        >
+
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 p-2 rounded">Simulate me!</button>
+    </form>
+</body>
+</html>
+
