@@ -1,24 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from livereload import Server
-
-app = Flask(__name__)
-app.secret_key = 'supersecret'
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/submit', methods=['POST'])
-def submit():
+import inspect
+import backend
+from flask import Flask
 
 
-@app.route('/result')
-def result():
-    data = session.get('data', [])
-    return render_template('result.html', data=data)
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(backend.routing.bp)
+
+    return app
+
 
 if __name__ == '__main__':
-    server = Server(app.wsgi_app)
-    server.watch('templates/')
-    server.watch('static/')
-    server.serve(debug=True, host='127.0.0.1', port=5000)
+    app = create_app()
+    app.run(debug=True)

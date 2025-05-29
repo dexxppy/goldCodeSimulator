@@ -1,0 +1,1 @@
+from .gold_generator import lfsr_generator
