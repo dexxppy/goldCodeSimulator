@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen space-y-8 py-12">
+    <section class="text-center max-w-5xl mx-auto px-2 mb-0">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">
+        Why do we need to code information during transmission?
+      </h2>
+      <p class="text-gray-400 text-lg leading-relaxed">
+        When information is transmitted over a physical medium — like air, cables, or wireless networks — it's often subject to interference, noise, and signal degradation.
+        Without any protection, even a single flipped bit can corrupt the entire message.
+        That’s where error-resilient coding methods like <span class="text-green-500 font-semibold">Gold codes</span> come into play.
+        By encoding the original message with specially designed sequences, we can detect and correct many of these distortions, dramatically improving reliability.
+        This is especially crucial in systems like GPS, satellite communications, and secure data transfer, where accuracy and integrity are essential.
+      </p>
+    </section>
+
+    <section class="w-full px-6 py-16 bg-gray-900 text-white">
+      <div class="max-w-5xl mx-auto text-center mb-12">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">How it works?</h2>
+        <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+          Learn how to use the app and how Gold's code is used in order to minimize errors during transmission.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold mb-4 text-green-500">Requirements</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-300">
+            <li>
+              Polynomials
+              <ul class="list-disc list-inside pl-5 mt-2 space-y-1 text-gray-400">
+                <li>Two binary polynomials of the same degree (e.g. 5, 7, 9...)</li>
+                <li>Each polynomial must be <span class="text-green-400 font-semibold">primitive over GF(2)</span></li>
+                <li>Polynomials must form a <span class="text-green-400 font-semibold">preferred pair</span> for Gold code generation</li>
+                <li>Each polynomial must include a constant term for LFSR to function correctly</li>
+              </ul>
+            </li>
+            <li>
+              Seeds
+              <ul class="list-disc list-inside pl-5 mt-2 space-y-1 text-gray-400">
+                <li>Must not be all zeros (e.g. not 00000)</li>
+                <li>Length of both must match polynomial degree n</li>
+                <li>Must be a binary string</li>
+              </ul>
+            </li>
+            <li>
+              Degree n
+              <ul class="list-disc list-inside pl-5 mt-2 space-y-1 text-gray-400">
+                <li>Common: 5, 7, or 10, not every degree will generate properly working LFSR's</li>
+                <li>Simulator takes n only in range from 5 to 11, excluding 8</li>
+                  <li><span class="text-green-400 font-semibold">NOTE: </span>
+                   Your chosen degree n will choose a certifies polynomial pair of that degree,
+                  seed you enter must be of this length
+                  </li>
+              </ul>
+            </li>
+          </ul>
+       </div>
+
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold mb-4 text-green-500">Steps to Use</h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-300">
+            <li>Enter the sentence you want to encode.</li>
+            <li>Select desired error rate density.</li>
+            <li>Select how many times you want your data to be transmitted (might get a different output every time!).</li>
+            <li>Optionally provide degree n and LFSR seeds of n length (otherwise will be randomized).</li>
+            <li>Click "Simulate me!" to see the result.</li>
+            <li>Observe how your input is coded and decoded, regardless the errors, using Gold's code.</li>
+          </ol>
+          <br>
+          <a class="text-l mb-2 text-green-500">👍 Got it. Take me to simulator.</a>
+        </div>
+
+         <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold mb-4 text-green-500">Coding with Gold's code</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-300">
+            <li> <span class="text-white font-semibold">Choose two primitive polynomials </span>
+                 of the same degree (e.g., degree 5).
+                These will define the structure of two Linear Feedback Shift Registers (LFSRs).
+            </li>
+            <li> <span class="text-white font-semibold">Initialize each LFSR with a non-zero binary seed</span>.
+                The seed length must match the degree of the polynomials.
+            </li>
+            <li> <span class="text-white font-semibold">Generate two maximal-length sequences</span>
+                using the chosen polynomials and seeds. Each LFSR produces a unique binary sequence.
+            </li>
+            <li><span class="text-white font-semibold">XOR the sequences</span>
+                from both LFSRs element by element. This operation produces a Gold code sequence with
+                excellent autocorrelation properties.
+            </li>
+            <li><span class="text-white font-semibold">Your input is transformed into binary sequence</span>.
+                You can enter any character, later on it is translated to ASCII codes, and from ASCII to binary sequence.
+            </li>
+            <li><span class="text-white font-semibold">Use the resulting Gold code</span>
+                to encode your input message. Each "1" in your binary sequence is represented with Gold's code,
+                while negated Gold's code stands for "0".
+            </li>
+          </ul>
+        </div>
+
+          <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold mb-4 text-green-500">Decoding with Gold's code</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-300">
+             <li> <span class="text-white font-semibold">The received signal often contains errors</span>
+                 caused by various types of noise or interference.
+                 The severity of these disturbances depends on the noise level you selected during simulation.
+             </li>
+             <li> <span class="text-white font-semibold">The incoming bitstream is divided into chunks</span>
+                 matching the length of the original Gold code sequence.
+             </li>
+            <li> <span class="text-white font-semibold">Each chunk is compared to the original Gold code</span>
+                using correlation. This tells us how closely the received segment resembles either a binary 1 or 0.
+            </li>
+           <li> <span class="text-white font-semibold">Based on the correlation score</span>,
+               each block is decoded into a single binary value — either 1 or 0.
+           </li>
+            <li> <span class="text-white font-semibold">The recovered binary sequence is then split into 8-bit segments</span>,
+                matching the standard length of ASCII characters.
+            </li>
+            <li> <span class="text-white font-semibold">Each 8-bit segment is converted back into a character</span>,
+                allowing you to retrieve your original message — either perfectly or with minor errors, depending on the noise level.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+</body>
+</html>
+

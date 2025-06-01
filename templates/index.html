@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Formularz</title>
@@ -11,6 +11,9 @@
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
             Simulator of coding with Gold's code
         </h1>
+        <a class="mb-4 text-lg font-extrabold leading-none tracking-tight text-green-600 md:text-xl lg:text-xl">
+            Click here to learn how it works
+        </a>
         <p class="mb-6 text-lg font-normal text-gray-400 lg:text-xl">
             Here, you can learn more about how Gold's code works. Just fill in required fields and optional ones, if
             you already got an idea, and let the magic do it's job
@@ -22,32 +25,36 @@
         <input type="text" name="sent_to+code" placeholder="Enter sentence to be coded"
                required class="w-full p-2 rounded bg-gray-700">
 
-        <select name="source" id="source" required
+        <select name="error_rate" id="error_rate" required
             class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-                <option value="" disabled selected>Choose error rate density</option>
-                <option value="low">low</option>
-                <option value="medium">medium</option>
-                <option value="high">high</option>
+                <option value="" disabled selected>Choose error rate severity</option>
+                <option value="0">No disruptions</option>
+                <option value="1">Very minor disruptions</option>
+                <option value="2">Minor disruptions</option>
+                <option value="3">Medium disruptions</option>
+                <option value="4">Major disruptions</option>
+                <option value="5">Very major disruptions</option>
         </select>
 
+        <input type="number" name="runs" placeholder="Transmit count"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+               min="1" max="100"
+        >
+
         <label for="source" class="block text-sm font-medium text-gray-300">and optionals here!</label>
-        <input type="text" name="binary" placeholder="Enter polynom of the first LFSR"
+
+        <input type="number" name="degree_n" placeholder="Enter degree n"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+               min="5" max="11"
+        >
+
+        <input type="text" name="seed1"
+            placeholder="Enter initial seed of the first LFSR"
             pattern="[01]*"
             class="w-full p-2 rounded bg-gray-700 text-white"
         >
 
-        <input type="number" name="binary" placeholder="Enter n"
-            class="w-full p-2 rounded bg-gray-700 text-white"
-               min="5" max="15"
-        >
-
-        <input type="text" name="binary"
-            placeholder="Enter initial seed of the second LFSR"
-            pattern="[01]*"
-            class="w-full p-2 rounded bg-gray-700 text-white"
-        >
-
-        <input type="text" name="binary"
+        <input type="text" name="seed2"
             placeholder="Enter initial seed of the second LFSR"
             pattern="[01]*"
             class="w-full p-2 rounded bg-gray-700 text-white"
