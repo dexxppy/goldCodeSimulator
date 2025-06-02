@@ -1,6 +1,6 @@
 from typing import List
 
-from backend.utils.converting_utils import list_of_bits_to_string, binary_list_to_ascii
+from goldCodeSimulator.backend.utils.converting_utils import list_of_bits_to_string, binary_list_to_ascii
 
 
 def negate_code(code: List[int]) -> List[int]:

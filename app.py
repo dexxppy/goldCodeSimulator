@@ -1,12 +1,16 @@
-import inspect
-import backend
+from flask_session import Session
 from flask import Flask
+from goldCodeSimulator.backend.routing.routes import bp
 
 
 def create_app():
     app = Flask(__name__)
-    app.register_blueprint(backend.routing.bp)
+    app.secret_key = "super_secret_key"
 
+    app.config['SESSION_TYPE'] = 'filesystem'  # sesje będą zapisywane jako pliki
+    Session(app)
+
+    app.register_blueprint(bp)
     return app
 
 

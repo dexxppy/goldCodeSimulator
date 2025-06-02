@@ -1,13 +1,12 @@
 from typing import List
-from backend.services.ber_detector import get_error_count, calculate_ber
-from backend.utils.coder_utils import (negate_code,
+from goldCodeSimulator.backend.utils.coder_utils import (negate_code,
                                        replace_zeros_with_negative_ones,
                                        chunk_string,
                                        list_of_bits_to_string,
                                        get_correlated_bit,
                                        bits_list_to_ascii
                                        )
-from backend.utils.converting_utils import ascii_to_binary_list, string_to_ascii_list, flatten_chunks
+from goldCodeSimulator.backend.utils.converting_utils import ascii_to_binary_list, string_to_ascii_list, flatten_chunks
 
 
 class Coder:
@@ -64,9 +63,11 @@ class Coder:
             decoded_bits.append(correlated_bit)
 
         decoded_sentence = bits_list_to_ascii(decoded_bits)
+        decoded_bits_in_string = ''.join(str(char) for char in decoded_bits)
         result_in_string = ''.join(str(char) for char in decoded_sentence)
 
-        return {"result_in_bit_list": decoded_bits, "result_in_str": result_in_string}
+        return {"result_in_bit_list": decoded_bits, "result_in_bit_str": decoded_bits_in_string,
+                "result_in_ascii": result_in_string}
 
     def calculate_correlation(self, data_fragment: List[int]):
         if len(data_fragment) != self.n:

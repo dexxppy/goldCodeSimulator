@@ -36,11 +36,11 @@ def handle_n(n=None):
     if n is None:
         n = random.choice([i for i in range(5, 11) if i not in [8]])
 
+    if type(n) is not int:
+        n = int(n)
+
     if n not in [5, 6, 7, 9, 10, 11]:
         raise TypeError("Value n must be a value from [5,6,7,9,10,11]")
-
-    if type(n) is not int:
-        raise TypeError("Value n must be an integer")
 
     return n
 

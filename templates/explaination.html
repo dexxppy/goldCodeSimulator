@@ -55,8 +55,7 @@
                 <li>Common: 5, 7, or 10, not every degree will generate properly working LFSR's</li>
                 <li>Simulator takes n only in range from 5 to 11, excluding 8</li>
                   <li><span class="text-green-400 font-semibold">NOTE: </span>
-                   Your chosen degree n will choose a certifies polynomial pair of that degree,
-                  seed you enter must be of this length
+                   You might want to choose a smaller degree like 5 or 6. Higher values might delay results significantly.
                   </li>
               </ul>
             </li>
@@ -74,7 +73,7 @@
             <li>Observe how your input is coded and decoded, regardless the errors, using Gold's code.</li>
           </ol>
           <br>
-          <a class="text-l mb-2 text-green-500">👍 Got it. Take me to simulator.</a>
+          <a href="/" class="text-l mb-2 text-green-500">👍 Got it. Take me to simulator.</a>
         </div>
 
          <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
@@ -108,8 +107,10 @@
           <h3 class="text-2xl font-bold mb-4 text-green-500">Decoding with Gold's code</h3>
           <ul class="list-disc list-inside space-y-2 text-gray-300">
              <li> <span class="text-white font-semibold">The received signal often contains errors</span>
-                 caused by various types of noise or interference.
+                 caused by various types of noise or interference, which can cause some bits to be flipped.
                  The severity of these disturbances depends on the noise level you selected during simulation.
+                 This level return a percentage of transmitted bits, that are inverted, from 0 to 1 or from 1 to 0.
+                 In the simulation report you can learn, how gold's code can prevent the output from being completely corrupted.
              </li>
              <li> <span class="text-white font-semibold">The incoming bitstream is divided into chunks</span>
                  matching the length of the original Gold code sequence.
@@ -124,7 +125,7 @@
                 matching the standard length of ASCII characters.
             </li>
             <li> <span class="text-white font-semibold">Each 8-bit segment is converted back into a character</span>,
-                allowing you to retrieve your original message — either perfectly or with minor errors, depending on the noise level.
+                allowing you to retrieve your original message — either perfectly, with minor or major errors, depending on the noise level.
             </li>
           </ul>
         </div>

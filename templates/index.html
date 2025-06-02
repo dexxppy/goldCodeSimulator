@@ -11,7 +11,7 @@
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
             Simulator of coding with Gold's code
         </h1>
-        <a class="mb-4 text-lg font-extrabold leading-none tracking-tight text-green-600 md:text-xl lg:text-xl">
+        <a href="/explain" class="mb-4 text-lg font-extrabold leading-none tracking-tight text-green-600 md:text-xl lg:text-xl">
             Click here to learn how it works
         </a>
         <p class="mb-6 text-lg font-normal text-gray-400 lg:text-xl">
@@ -20,16 +20,16 @@
         </p>
     </div>
 
-    <form method="POST" action="/submit" class="bg-gray-800 p-8 rounded space-y-4 w-full max-w-md">
+    <form method="POST" action="/transmit" class="bg-gray-800 p-8 rounded space-y-4 w-full max-w-md">
         <label for="source" class="block text-sm font-medium text-gray-300">Fill in required fields below...</label>
-        <input type="text" name="sent_to+code" placeholder="Enter sentence to be coded"
+        <input type="text" name="sent_to_transmit" placeholder="Enter sentence to be coded"
                required class="w-full p-2 rounded bg-gray-700">
 
         <select name="error_rate" id="error_rate" required
             class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
                 <option value="" disabled selected>Choose error rate severity</option>
-                <option value="0">No disruptions</option>
-                <option value="1">Very minor disruptions</option>
+                <option value="0">No disruptions (%)</option>
+                <option value="1">Very minor disruptions (%)</option>
                 <option value="2">Minor disruptions</option>
                 <option value="3">Medium disruptions</option>
                 <option value="4">Major disruptions</option>

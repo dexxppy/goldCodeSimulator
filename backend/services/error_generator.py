@@ -2,7 +2,7 @@ import json
 import os
 import random
 from typing import List
-from backend.utils.coder_utils import list_of_bits_to_string
+from goldCodeSimulator.backend.utils.coder_utils import list_of_bits_to_string
 
 def generate_error_rate(lower_limit, upper_limit):
     rate = random.randint(a=int(lower_limit), b=int(upper_limit))
@@ -11,20 +11,25 @@ def generate_error_rate(lower_limit, upper_limit):
 def get_error_rate_data(error_id: int):
     json_path = os.path.join(os.path.dirname(__file__), "..", "..", "static", "data", "error_rates.json")
     json_path = os.path.abspath(json_path)
+    print(error_id)
 
     try:
+        error_id = int(error_id)
         with open(json_path, 'r', encoding='utf-8') as f:
             all_rates = json.load(f)["error_rates"]
+        rate_data = next((entry for entry in all_rates if entry["id"] == error_id), None)
+        print(rate_data)
     except FileNotFoundError:
         raise FileNotFoundError(f"File not found: {json_path}")
     except json.JSONDecodeError:
         raise ValueError(f"File {json_path} contains invalid JSON")
     except IOError as e:
         raise IOError(f"Error occurred while reading from {json_path}: {e}")
+    except TypeError as e:
+        raise IOError(f"Couldn't find an error with " + error_id + "id")
 
-    rate_data = next((entry for entry in all_rates if entry["id"] == error_id), None)
 
-    return {"rate_id": rate_data["id"], "rate_name": rate_data["name"],
+    return {"id": rate_data["id"], "rate_name": rate_data["name"],
             "lower_limit": rate_data["lower_limit"], "upper_limit": rate_data["upper_limit"]}
 
 

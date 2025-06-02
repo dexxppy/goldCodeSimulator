@@ -1,4 +1,4 @@
-from backend.utils.generators_utils import handle_n, handle_seed, handle_polynom, generate_polynoms
+from goldCodeSimulator.backend.utils.generators_utils import handle_n, handle_seed, handle_polynom, generate_polynoms
 
 
 def lfsr_step(register, poly):
