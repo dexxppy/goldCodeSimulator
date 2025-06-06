@@ -11,7 +11,6 @@ def generate_error_rate(lower_limit, upper_limit):
 def get_error_rate_data(error_id: int):
     json_path = os.path.join(os.path.dirname(__file__), "..", "..", "static", "data", "error_rates.json")
     json_path = os.path.abspath(json_path)
-    print(error_id)
 
     try:
         error_id = int(error_id)
@@ -51,4 +50,4 @@ def simulate_errors(coded_sentence: List[int], error_rate=None, error_rate_id=No
         noisy_data.append(bit)
 
     noisy_data_in_str = list_of_bits_to_string(noisy_data)
-    return {"noisy_data_in_list": noisy_data, "noisy_data_in_str": noisy_data_in_str}
+    return {"noisy_data_in_list": noisy_data, "noisy_data_in_str": noisy_data_in_str, "error_rate": error_rate}

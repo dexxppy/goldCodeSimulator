@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Formularz</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='scripts/form-validation.js') }}"></script>
 </head>
 <body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen space-y-8 py-12">
 
@@ -27,18 +28,17 @@
 
         <select name="error_rate" id="error_rate" required
             class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-                <option value="" disabled selected>Choose error rate severity</option>
-                <option value="0">No disruptions (%)</option>
-                <option value="1">Very minor disruptions (%)</option>
-                <option value="2">Minor disruptions</option>
-                <option value="3">Medium disruptions</option>
-                <option value="4">Major disruptions</option>
-                <option value="5">Very major disruptions</option>
+                <option value="" disabled selected>Choose error rate severity (percentage of inverted bits)</option>
+                <option value="0">No disruptions (0%)</option>
+                <option value="1">Minor disruptions (1-15%)</option>
+                <option value="2">Medium disruptions (15-30%)</option>
+                <option value="3">Major disruptions (30-40%)</option>
+                <option value="4">Very major disruptions (40-60%)</option>
         </select>
 
         <input type="number" name="runs" placeholder="Transmit count"
             class="w-full p-2 rounded bg-gray-700 text-white"
-               min="1" max="100"
+               min="1" max="50"
         >
 
         <label for="source" class="block text-sm font-medium text-gray-300">and optionals here!</label>
