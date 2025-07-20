@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your results report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='scripts/display.js') }}"></script>
+
+    <style>
+        .hidden-line {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .visible-line {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen space-y-8 py-12">
+
+    <section class="w-full px-6 py-16 bg-gray-900 text-white">
+      <div class="max-w-5xl mx-auto text-center mb-12">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">Your simulation report</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold mb-4 text-green-500">Initial settings</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-300 hidden-line">
+              <li> <span class="text-white font-semibold">Your input text: </span><br>
+                <span class="text-l mb-2 text-green-500 break-words whitespace-normal block pl-6">
+                    {{ data.sentence_to_transmit }}
+                </span>
+            </li>
+            <li > <span class="text-white font-semibold">Degree: </span>
+                <span class="text-l mb-2 text-green-500 break-words whitespace-normal block pl-6"> {{ data.n }} </span>
+            </li>
+            <li> <span class="text-white font-semibold">First polynomial: </span>
+                <span class="text-l mb-2 text-green-500 break-words whitespace-normal block pl-6"> {{ data.poly1 }} </span>
+            </li>
+            <li> <span class="text-white font-semibold">Second polynomial: </span>
+                <span class="text-l mb-2 text-green-500 break-words whitespace-normal block pl-6"> {{ data.poly2 }} </span>
+            </li>
+           <li> <span class="text-white font-semibold">First LFSR's seed: </span>
+                <span class="text-l mb-2 text-green-500 break-words whitespace-normal block pl-6"> {{ data.seed1 }} </span>
+            </li>
+            <li> <span class="text-white font-semibold">First LFSR's seed: </span>
+                <span class="text-l mb-2 text-green-500 break-words whitespace-normal block pl-6"> {{ data.seed2 }}  </span>
+            </li>
+            <li> <span class="text-white font-semibold">Transmit </span>
+                <span class="text-l mb-2 text-green-500"> {{ data.runs }} </span>
+                times
+            </li>
+            <li> <span class="text-white font-semibold">With </span>
+                <span class="text-l mb-2 text-green-500"> {{ data.error_rate_name }} </span>
+                disruptions
+            </li>
+          </ul>
+       </div>
+
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg col-span-2 md:col-span-1 lg:col-span-2">
+          <h3 class="text-2xl font-bold mb-4 text-green-500">Results</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-300">
+              <li> <span class="text-white font-semibold">Gold's code: </span>
+                <span class="break-words whitespace-normal hidden-line"> {{ data.gold_code }}  </span>
+            </li>
+              <li> <span class="text-white font-semibold">Your coded input: </span>
+                    {% set full_code = data.coded_sentence %}
+                    {% set max_display = 200 %}
+                    {% set hidden_len = full_code|length - max_display %}
+
+                    <span class="break-words whitespace-normal hidden-line">
+                        {{ full_code[:200] }}{% if full_code|length > 200 %}... +{{ full_code|length - 200 }}{% endif %}
+                    </span>
+            </li>
+            <li> <span class="text-white font-semibold">Example of received, noisy data: </span>
+                    {% set full_code = data.transmission_data[0].noisy_data_in_str %}
+                    {% set max_display = 200 %}
+                    {% set hidden_len = full_code|length - max_display %}
+
+                    <span class="hidden-line break-words whitespace-normal hidden-line">
+                        {{ full_code[:200] }}{% if full_code|length > 200 %}... +{{ full_code|length - 200 }}{% endif %}
+                    </span>
+            </li>
+            <li> <span class="text-white font-semibold break-words whitespace-normal">It's decoded output: </span>
+                <span class="break-words whitespace-normal">
+                    <span class="hidden-line">{{ data.transmission_data[0].decoded_sentence_in_bit_str }} </span>
+                </span>
+            </li>
+           <li> <span class="text-white font-semibold break-words whitespace-normal">Calculated BER(Bit Error Rate): </span>
+               <span class="hidden-line">{{ data.ber_rate }}</span>
+            </li>
+            <li> <span class="text-white font-semibold break-words whitespace-normal">Error rate in percentage: </span>
+                <span class="hidden-line"> {{ data.ber_percentage }}% </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg col-span-3 md:col-span-3 lg:col-span-3 items-center justify-center text-center">
+          <h3 class="text-5xl font-bold mb-4 text-green-500 hidden-line">Received text</h3>
+          <ol class="hidden-line list-decimal list-inside space-y-2 text-gray-300 text-xl">
+            {% for item in data.transmission_data %}
+                <li class="break-words whitespace-normal">{{ item.decoded_sentence_in_ascii }}</li>
+            {% endfor %}
+          </ol>
+          <br>
+        </div>
+
+      </div>
+
+      <div class="mt-8 text-center hidden-line">
+        <a href="/"
+           class="inline-block px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold text-lg rounded-xl shadow-md transition duration-300">
+            ⬅️ Back to Simulator
+        </a>
+      </div>
+    </section>
+</body>
+</html>

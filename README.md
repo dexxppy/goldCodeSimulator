@@ -65,4 +65,3 @@ The simulator is fully self-contained, with no external services or network depe
   <li>Automated unit tests</li>
 </ul>
 This project was developed entirely by me, and due to time constraints, I focused on core functionality rather than robustness or production-readiness.
-

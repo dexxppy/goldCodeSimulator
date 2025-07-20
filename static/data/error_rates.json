@@ -1,0 +1,9 @@
+{
+  "error_rates" : [
+    {"id": 0, "name": "No ",  "lower_limit": 0, "upper_limit": 0},
+    {"id": 1, "name": "Minor","lower_limit": 1, "upper_limit": 15},
+    {"id": 2, "name": "Medium","lower_limit": 15, "upper_limit": 30},
+    {"id": 3, "name": "Major","lower_limit": 30, "upper_limit": 40},
+    {"id": 4, "name": "Very major","lower_limit": 40, "upper_limit": 60}
+  ]
+}

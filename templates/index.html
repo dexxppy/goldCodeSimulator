@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gold's code simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='scripts/form-validation.js') }}"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen space-y-8 py-12">
+
+    <div class="text-center max-w-2xl">
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
+            Simulator of coding with Gold's code
+        </h1>
+        <a href="/explain" class="mb-4 text-lg font-extrabold leading-none tracking-tight text-green-600 md:text-xl lg:text-xl">
+            Click here to learn how it works
+        </a>
+        <p class="mb-6 text-lg font-normal text-gray-400 lg:text-xl">
+            Here, you can learn more about how Gold's code works. Just fill in required fields and optional ones, if
+            you already got an idea, and let the magic do it's job
+        </p>
+    </div>
+
+    <form method="POST" action="/transmit" class="bg-gray-800 p-8 rounded space-y-4 w-full max-w-md">
+        <label for="source" class="block text-sm font-medium text-gray-300">Fill in required fields below...</label>
+        <input type="text" name="sent_to_transmit" placeholder="Enter sentence to be coded"
+               required class="w-full p-2 rounded bg-gray-700">
+
+        <select name="error_rate" id="error_rate" required
+            class="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                <option value="" disabled selected>Choose error rate severity (percentage of inverted bits)</option>
+                <option value="0">No disruptions (0%)</option>
+                <option value="1">Minor disruptions (1-15%)</option>
+                <option value="2">Medium disruptions (15-30%)</option>
+                <option value="3">Major disruptions (30-40%)</option>
+                <option value="4">Very major disruptions (40-60%)</option>
+        </select>
+
+        <input type="number" name="runs" placeholder="Transmit count"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+               min="1" max="50"
+        >
+
+        <label for="source" class="block text-sm font-medium text-gray-300">and optionals here!</label>
+
+        <input type="number" name="degree_n" placeholder="Enter degree n"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+               min="5" max="11"
+        >
+
+        <input type="text" name="seed1"
+            placeholder="Enter initial seed of the first LFSR"
+            pattern="[01]*"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+        >
+
+        <input type="text" name="seed2"
+            placeholder="Enter initial seed of the second LFSR"
+            pattern="[01]*"
+            class="w-full p-2 rounded bg-gray-700 text-white"
+        >
+
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 p-2 rounded">Simulate me!</button>
+    </form>
+</body>
+</html>
+
