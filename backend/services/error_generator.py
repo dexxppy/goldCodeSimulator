@@ -17,7 +17,6 @@ def get_error_rate_data(error_id: int):
         with open(json_path, 'r', encoding='utf-8') as f:
             all_rates = json.load(f)["error_rates"]
         rate_data = next((entry for entry in all_rates if entry["id"] == error_id), None)
-        print(rate_data)
     except FileNotFoundError:
         raise FileNotFoundError(f"File not found: {json_path}")
     except json.JSONDecodeError:

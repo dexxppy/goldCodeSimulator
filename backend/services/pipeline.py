@@ -83,25 +83,3 @@ def run_full_simulation(runs: int, sent_to_transmit: str, error_rate_id: int, n=
             "transmission_data": transmission_data, "error_rate_name": error_rate_name,
             "ber_rate": ber_rate, "ber_percentage": ber_percentage
             }
-    # print("poly")
-    # print(poly1)
-    # print(poly2)
-    # print("n")
-    # print(n)
-    # print("seed")
-    # print(seed1)
-    # print(seed2)
-    # print("lfsr")
-    # print(lfsr1)
-    # print(lfsr2)
-    # print("code")
-    # print(gold_code)
-    # print("coded sent")
-    # print(coded_sentence_in_str)
-    # print("coded len")
-    # print(len(coded_sentence_in_str))
-    # print("error rate")
-    # print(error_rate_name)
-    #
-    # print("sentence to send")
-    # print(sent_to_transmit)
