@@ -19,6 +19,19 @@ This is an educational web application that simulates how **Gold codes** are use
   - How encoding and decoding is performed
 - Backend-driven simulation with realistic noise behavior (done in software)
 
+## Preview
+### Main page with form
+![Main page](screenshots/mainpage.png)
+
+### Explaination page
+![Explaination_page](screenshots/explaination_page.png)
+
+### Report of data transmission with medium disruptions
+![Medium_disruptions_report](screenshots/medium_report.png)
+
+### Report of data transmission with very major disruptions
+![Very_major_disruptions_report](screenshots/verymajor_report.png)
+
 ## Tech Stack
 
 - **Backend:** Python, Flask  
