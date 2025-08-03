@@ -74,7 +74,7 @@ def run_full_simulation(runs: int, sent_to_transmit: str, error_rate_id: int, n=
         transmission_data.append(transmite)
 
     ber_rate = calculate_ber(error_sum, len(binary_sentence_to_transmit) * runs)
-    ber_percentage = np.round(ber_rate, 2)
+    ber_percentage = np.round(ber_rate, 4) * 100
 
     return {"runs": runs, "sentence_to_transmit": sent_to_transmit,
             "n": str(n), "poly1": poly1_str, "poly2": poly2_str, "seed1": seed1_str, "seed2": seed2_str,

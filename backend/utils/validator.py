@@ -2,10 +2,12 @@ import re
 
 def validate_seed(n, seed):
     if len(seed) != n:
+        print("Seed must be of n degree length")
         return False
 
     for bit in seed:
         if int(bit) not in [0, 1]:
+            print(bit, "is not a valid bit")
             return False
     return True
 
@@ -13,7 +15,7 @@ def validate_form_input(sent_to_transmit, error_rate_id, runs, n, seed1, seed2):
     if not sent_to_transmit or not error_rate_id or not runs:
         raise ValueError("Input to trasmit, error rate id and runs cannot be empty")
 
-    if not bool(re.fullmatch(r'[a-zA-Z0-9]+', sent_to_transmit)):
+    if not bool(re.fullmatch(r'^[A-Za-z0-9 ]+$', sent_to_transmit)):
         raise ValueError("Sentence to transmit must contain only letters and numbers")
 
     try:
@@ -29,7 +31,8 @@ def validate_form_input(sent_to_transmit, error_rate_id, runs, n, seed1, seed2):
         else:
             n = None
     else:
-        if int(n) not in [5, 6, 7, 9, 10, 11]:
+        n = int(n)
+        if n not in [5, 6, 7, 9, 10, 11]:
             raise ValueError("Degree n must be in [5, 6, 7, 9, 10, 11]")
 
     if not seed1:
@@ -41,7 +44,7 @@ def validate_form_input(sent_to_transmit, error_rate_id, runs, n, seed1, seed2):
     if not seed2:
         seed2 = None
     else:
-        if not validate_seed(n, seed1):
+        if not validate_seed(n, seed2):
             raise ValueError("Seed must be of n degree length and consist only of binary values")
 
     return {"input_sent": sent_to_transmit, "error_rate_id": int(error_rate_id), "runs": int(runs),

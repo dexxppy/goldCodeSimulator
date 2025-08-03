@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const errors = [];
 
-        if (!/^[a-zA-Z0-9]+$/.test(sentToTransmit)) {
+        if (!/^[A-Za-z0-9 ]+$/.test(sentToTransmit)) {
             errors.push("Sent to transmit can only contain letters and digits.");
         }
 
