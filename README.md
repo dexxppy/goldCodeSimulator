@@ -28,7 +28,7 @@ This is an educational web application that simulates how **Gold codes** are use
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/dexppy/goldCodeSimulator.git
+git clone https://github.com/dexxppy/goldCodeSimulator.git
 cd goldCodeSimulator
 ```
 ### 2. Create and activate a virtual environment
